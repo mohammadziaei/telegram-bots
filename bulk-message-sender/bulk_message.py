@@ -7,9 +7,10 @@ import os
 class BulkMessage():
     contacts = []
     
-    def __init__(self,client:Client) -> None:
+    def __init__(self,client:Client,message:str) -> None:
         self.client=client 
         self.time_delay = 20
+        self.message = message
         
     #Main execution of script file to send mass message
     async def run(self):
@@ -23,7 +24,7 @@ class BulkMessage():
                             print(f"{'*'*10} Message sent successfully -> ",line[0] if line[0] else line[1],'*'*10) 
                             f.write(f"{line[0]},{line[1]}\n") # logs phone numbers and usernames to which the message was sent successfully
                             f.flush()
-                            await self.client.send_message(chat_id = result_check,text = 'message test') # send message to user
+                            await self.client.send_message(chat_id = result_check,text = self.message) # send message to user
 
                         await asyncio.sleep(self.time_delay)
         except AttributeError :
@@ -57,17 +58,6 @@ class BulkMessage():
                 print(f"\n{'*'*10} Your contacts have been successfully saved in 'my_contacts.csv' file. {'*'*10}\n")
             
         return (self.contacts)
-    
-    
-    async def set_new_phone(self,phone_number):
-        try:
-            self.client.send_code(phone_number=phone_number)
-            code = input("The confirmation code has been sent via Telegram app\n\
-                Enter confirmation code: ")
-            self.client.sign_in(phone_number=phone_number,phone_code=code)
-            print(f"\n{'*'*10}Login successful! Session saved.{'*'*10}\n")
-        except Exception as e :
-            print(f"\n{'*'*10} error -> ",e ,'*'*10 ," \n")
     
     #Enter the csv file in the program   
     def set_file(self):

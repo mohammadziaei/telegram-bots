@@ -32,7 +32,7 @@ This is a Python script that utilizes the Pyrogram library to send bulk messages
 ## Usage
 
 1. Setting up the client
-Before running the script, fill in your api_id, api_hash, and phone_number directly in the main.py file:
+Before running the script, fill in your api_id, api_hash, and phone_number and message directly in the main.py file:
 
     ```python
     from pyrogram import Client
@@ -44,6 +44,7 @@ Before running the script, fill in your api_id, api_hash, and phone_number direc
         api_id = '#'  # get api_id from my.telegram.org
         api_hash = '#'  # get api_hash from my.telegram.org
         phone = '#'  # your phone number
+        message = " your message "
         app = Client(name="bulksender", api_id=api_id, api_hash=api_hash, phone_number=phone)
 
         # Rest of the code...

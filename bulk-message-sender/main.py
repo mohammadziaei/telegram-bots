@@ -10,6 +10,7 @@ async def main():
     api_id = '#'  # get api_id from my.telgram.org
     api_hash = '#'  # get api_id from my.telgram.org
     phone = '#'  
+    message = " پیام تست "
     app =  Client(name= "bulksender" ,api_id=api_id, api_hash=api_hash, phone_number=phone)
 
     option_help = f"{'#'*20}\n1- run script\n\
@@ -24,7 +25,7 @@ select one option : "
     
     try:
         async with app:
-            robot = BulkMessage(app)
+            robot = BulkMessage(app,message)
             
             while(True):
                 option = input(option_help)
